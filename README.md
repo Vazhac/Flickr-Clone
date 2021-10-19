@@ -1,4 +1,6 @@
-# Flask React Project
+# PhotoPickr Project
+
+Project Wireframe: https://www.figma.com/file/xraSqyGNmKe9IAqlJ5Mm7T/Untitled
 
 This is the starter for the Flask React project.
 
