@@ -1,4 +1,6 @@
-# Flask React Project
+# PhotoPickr Project
+
+Project Wireframe: https://www.figma.com/file/xraSqyGNmKe9IAqlJ5Mm7T/Untitled
 
 This is the starter for the Flask React project.
 
@@ -7,7 +9,7 @@ This is the starter for the Flask React project.
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/Vazhac/PhotoPickr
    ```
 
 2. Install dependencies
