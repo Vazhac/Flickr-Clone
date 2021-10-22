@@ -9,6 +9,7 @@ photo_routes = Blueprint('photos', __name__)
 # ===========================Photos=======================================
 # ========================================================================
 
+# ==========================Find-ALL==========================
 
 @photo_routes.route('/', methods=['GET'])
 def photos():
@@ -33,7 +34,7 @@ def create_photo():
     return photo.to_dict()
 
 
-# ==========================Find-ALL==========================
+# ==========================Find-ONE==========================
 
 
 @photo_routes.route('/<int:id>', methods=['GET'])
@@ -62,31 +63,58 @@ def delete_photo(id):
     photo = Photo.query.get(id)
     db.session.delete(photo)
     db.session.commit()
-    return photo.to_dict()
+    return 'ok'
 
 # ========================================================================
 # ==========================Comments======================================
 # ========================================================================
 
 
-@photo_routes.route('/<int:id>/comments', methods=['GET'])
+@photo_routes.route('/<int:id>/comments/', methods=['GET'])
 def photo_comments(id):
     photo = Photo.query.get(id)
     return {'comments': [comment.to_dict() for comment in photo.comments]}
 
+# find-one comment
 
-@photo_routes.route('/<int:id>/comments', methods=['POST'])
-def create_photo_comment(id):
+@photo_routes.route('/<int:id>/comments/<int:comment_id>/', methods=['GET'])
+def photo_comment(id, comment_id):
+    photo = Photo.query.get(id)
+    comment = Comment.query.get(comment_id)
+    return comment.to_dict()
+
+@photo_routes.route('/<int:id>/comments/', methods=['POST'])
+def create_comment(id):
     body = request.get_json()
     comment = Comment(
         content=body.get('content'),
         user_id=current_user.id,
         photo_id=id,
+        createdAt=body.get('createdAt'),
+        updatedAt=body.get('updatedAt')
     )
     db.session.add(comment)
     db.session.commit()
     return comment.to_dict()
 
+@photo_routes.route('/<int:id>/comments/<int:comment_id>/', methods=['PUT'])
+def update_comment(id, comment_id):
+    comment = Comment.query.get(comment_id)
+    body = request.get_json()
+    comment.content = body.get('content')
+    comment.user_id = current_user.id
+    comment.photo_id = id
+    comment.createdAt = body.get('createdAt')
+    comment.updatedAt = body.get('updatedAt')
+    db.session.commit()
+    return comment.to_dict()
+
+@photo_routes.route('/<int:id>/comments/<int:comment_id>/', methods=['DELETE'])
+def delete_comment(id, comment_id):
+    comment = Comment.query.get(comment_id)
+    db.session.delete(comment)
+    db.session.commit()
+    return 'ok'
 # ============================================================
 # ============================================================
 # ============================================================

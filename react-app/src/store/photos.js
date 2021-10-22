@@ -39,16 +39,16 @@ const removePhotoAction = (photoId) => {
   };
 };
 
-export const createPhoto = (photo) => async (dispatch) => {
+export const createPhoto = (newPhoto) => async (dispatch) => {
   const response = await fetch('/api/photos/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(photo),
+    body: JSON.stringify(newPhoto),
   });
-  const data = await response.json();
-  dispatch(createPhotoAction(data));
+  const photo = await response.json();
+  dispatch(createPhotoAction(photo));
 }
 
 export const fetchPhoto = (id) => async (dispatch) => {
@@ -71,14 +71,6 @@ export const editPhoto = (photo) => async (dispatch) => {
   const data = await response.json();
   dispatch(editPhotoAction(data));
 }
-
-// const response = await fetch(`/api/photos/${photo.id}`, {
-//   method: 'PUT',
-//   include: 'user',
-//   body: JSON.stringify(photo)
-// });
-// dispatch(editPhotoAction(photo));
-// return response;
 
 export const fetchPhotos = () => async (dispatch) => {
   const response = await fetch('/api/photos/');
@@ -114,7 +106,7 @@ const photosReducer = (state = initialState, action) => {
       newState.photo = action.payload;
       return newState;
     case REMOVE_PHOTO:
-      newState.photo = {};
+      newState.photo = null;
       return newState;
     case SET_PHOTOS:
       newState.photos = action.payload;

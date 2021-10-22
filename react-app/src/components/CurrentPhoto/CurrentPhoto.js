@@ -11,6 +11,7 @@ const CurrentPhoto = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const { id } = useParams()
+    const photoId = parseInt(id)
     const [content, setContent] = useState('')
     const photo = useSelector(state => state.photos?.photo)
     const comments = useSelector(state => state.comments?.comments)
@@ -18,29 +19,30 @@ const CurrentPhoto = () => {
 
 
     useEffect(() => {
-        dispatch(fetchPhoto(id))
-        dispatch(fetchComments(id))
-    }, [dispatch, id])
+        dispatch(fetchPhoto(photoId))
+        dispatch(fetchComments(photoId))
+    }, [dispatch, photoId])
 
     const handleDelete = () => {
-        dispatch(deletePhoto(+id))
+        dispatch(deletePhoto(photoId))
         history.push('/photos')
     }
 
-    const handleDeleteComment = (comment) => {
-        dispatch(deleteComment(id, comment))
+    const handleDeleteComment = (commentId) => {
+        dispatch(deleteComment(photoId, commentId))
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const newComment = {
             content: content,
-            photo_id: +id,
+            photo_id: photoId,
             user_id: currentUser.id,
             createdAt: new Date(),
             updatedAt: new Date()
         }
         dispatch(createComment(newComment))
+        dispatch(fetchComments(photoId))
     }
 
     return (
@@ -85,26 +87,29 @@ const CurrentPhoto = () => {
                                         <a href="#" onClick={handleSubmit} className="btn btn-white btn-animate">Post a comment</a>
                                     </div>
                                     < div className="photo-page-body-left-lyrics-comments" >
-                                        {comments?.map(comment => (
-                                            <div className="photo-page-body-left-lyrics-comments-comment" key={comment.photo_id}>
-                                                <div className="photo-page-body-left-lyrics-comments-comment-user">
-                                                    <h2>{comment?.user?.first_name} {comment?.user?.last_name}:</h2>
-                                                    <div className="photo-page-body-left-lyrics-comments-comment-body">
-                                                        <h3>{comment?.content}</h3>
-                                                        <div className="date-info"></div>
-                                                        <h5>{comment?.createdAt}</h5>
-                                                        <h5>Editted on: {comment?.updatedAt}</h5>
-                                                    </div>
-                                                    {(currentUser?.id === comment?.user?.id) ? (
-                                                        <div className="photo-page-body-left-lyrics-comments-comment-user-edit">
-                                                            <EditCommentModal comment={comment} />
-                                                            <button onClick={() => handleDeleteComment(comment?.id)}>Delete</button>
+                                        {comments?.length === 0 ? (
+                                            <h2>No comments to display</h2>
+                                        ) : (
+                                            comments?.map(comment => (
+                                                <div className="photo-page-body-left-lyrics-comments-comment" key={comment.id}>
+                                                    <div className="photo-page-body-left-lyrics-comments-comment-user">
+                                                        <h2>{comment?.user?.first_name} {comment?.user?.last_name}:</h2>
+                                                        <div className="photo-page-body-left-lyrics-comments-comment-body">
+                                                            <h3>{comment?.content}</h3>
+                                                            <div className="date-info"></div>
+                                                            <h5>{comment?.createdAt}</h5>
+                                                            {/* <h5>Editted on: {comment?.updatedAt}</h5> */}
                                                         </div>
-                                                    ) : null}
+                                                        {(currentUser?.id === comment?.user?.id) ? (
+                                                            <div className="photo-page-body-left-lyrics-comments-comment-user-edit">
+                                                                <EditCommentModal comment={comment} />
+                                                                <button onClick={() => handleDeleteComment(comment?.id)}>Delete</button>
+                                                            </div>
+                                                        ) : null}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        ))
-                                        }
+                                            ))
+                                        )}
                                     </div>
                                 </div>
                             </div>

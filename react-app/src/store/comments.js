@@ -11,6 +11,13 @@ const createCommentAction = (comment) => {
   }
 };
 
+const setComments = (comments) => {
+  return {
+    type: SET_COMMENTS,
+    payload: comments,
+  }
+};
+
 const setComment = (comment) => {
   return {
     type: SET_COMMENT,
@@ -25,74 +32,69 @@ const editCommentAction = (comment) => {
   }
 };
 
-const removeCommentAction = (id) => {
+const removeCommentAction = (commentId) => {
   return {
     type: REMOVE_COMMENT,
-    payload: id,
+    payload: commentId,
   }
 };
-
-const setComments = comments => ({
-  type: SET_COMMENTS,
-  payload: comments,
-});
 
 export const createComment = (newComment) => async dispatch => {
-  const response = await fetch(`/api/photos/${newComment.photo_id}/comments/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newComment),
-  });
-  const comment = await response.json();
-  dispatch(createCommentAction(comment));
+  const response = await fetch(
+    `/api/photos/${newComment.photo_id}/comments/`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newComment),
+    }
+  );
+  const data = await response.json();
+  dispatch(createCommentAction(data.newComment));
+  dispatch(fetchComments(data.photo_id));
 };
 
-export const fetchComments = (id) => async dispatch => {
-  const response = await fetch(`/api/photos/${id}/comments/`);
-
-  if (response.ok) {
-    const comments = await response.json();
-    dispatch(setComments(comments));
-  }
+export const fetchComments = (photoId) => async dispatch => {
+  const response = await fetch(`/api/photos/${photoId}/comments/`);
+  const data = await response.json();
+  const comments = data.comments;
+  dispatch(setComments(comments));
 };
 
 // get a specific comment from the state by id and return it as a comment object at API route /api/songs/:id/comments/:id
-export const fetchComment = (id, commentId) => async dispatch => {
-  const response = await fetch(`/api/photos/${id}/comments/${commentId}`);
-
-  if (response.ok) {
-    const comment = await response.json();
-    dispatch(setComment(comment));
-  }
+export const fetchComment = (comment) => async dispatch => {
+  console.log('fetch comment 1: ', comment);
+  const response = await fetch(`/api/photos/${comment.photo_id}/comments/${comment.id}/`);
+  console.log('fetch comment 2: ', response);
+  const data = await response.json();
+  dispatch(setComment(data));
 };
 
 // edit a comment by id and return the new state
 export const editComment = (comment) => async dispatch => {
-  const response = await fetch(
-    `/api/photos/${comment.songId}/comments/${comment.id}/`,
-    {
-      method: 'PUT',
-      include: 'user',
-      body: JSON.stringify(comment),
-    }
-  );
+  const response = await fetch(`/api/photos/${comment.photo_id}/comments/${comment.id}/`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(comment),
+  });
   const data = await response.json();
   dispatch(editCommentAction(data));
+  dispatch(fetchComments(data.photo_id));
 };
 
 // delete the comment by id and return the new state with the comment removed
-export const deleteComment = (id, commentId) => async dispatch => {
+export const deleteComment = (photoId, commentId) => async dispatch => {
   const response = await fetch(
-    `/api/photos/${id}/comments/${commentId}/`,
+    `/api/photos/${photoId}/comments/${commentId}/`,
     {
       method: 'DELETE',
     }
   );
-  const data = await response.json();
-  dispatch(removeCommentAction(data.commentId));
-  dispatch(fetchComments(id));
+  dispatch(removeCommentAction(commentId));
+  dispatch(fetchComments(photoId));
 };
 
 const initialState = {};
@@ -106,17 +108,12 @@ const commentsReducer = (state = initialState, action) => {
       return newState;
     case SET_COMMENT:
       newState.comment = action.payload;
-      break;
+      return newState;
     case EDIT_COMMENT:
-      newState.comments = state.comments.map(comment => {
-        if (comment.id === action.payload.id) {
-          return action.payload;
-        }
-        return comment;
-      });
+      newState.comment = action.payload;
       return newState;
     case REMOVE_COMMENT:
-      newState.comments = state.comments.filter(comment => comment.id !== action.payload);
+      newState.comment = null;
       return newState;
     case SET_COMMENTS:
       newState.comments = action.payload;

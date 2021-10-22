@@ -1,37 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './EditComment.css';
-import { editComment } from '../../store/comments'
+import { editComment, fetchComment } from '../../store/comments'
 import { useParams, useHistory } from "react-router-dom";
 
 //ask for title and description and url for comment
-function EditComment({ comment }) {
+function EditComment({comment, setShowModal}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const { id } = useParams();
-  const [body, setBody] = useState(comment?.body);
+  const photoId = parseInt(id);
+  const [content, setContent] = useState('');
   const [errors, setErrors] = useState([]);
   const history = useHistory();
-  const [commentId] = useState(comment?.id);
+
+  // useEffect(() => {
+  //   dispatch(fetchComment(comment));
+  // }, [dispatch, comment]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const comment = {
-      // songId,
-      songId: +id,
-      body,
-      id: commentId,
+    const editedComment = {
+      photo_id: photoId,
+      content: content,
+      id: comment?.id,
       userId: sessionUser.id,
-      createdAt: new Date("2015-03-25"),
-      updatedAt: new Date("2015-03-25"),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }
     setErrors([]);
-    if (body === "") {
+    if (content === "") {
       setErrors(["Please fill out all required fields"]);
     } else {
-      dispatch(editComment(comment))
-      setBody(comment.body);
-      return history.push(`/songs/${id}`);
+      dispatch(editComment(editedComment))
+      setShowModal(false);
     }
   };
 
@@ -50,10 +52,10 @@ function EditComment({ comment }) {
           <div className="edit-comment-page-container-input">
             <input
               type="text"
-              name="body"
-              placeholder="Enter your comment"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
+              name="content"
+              placeholder={comment?.content}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
             />
           </div>
           <div className="edit-comment-page-container-form-submit">

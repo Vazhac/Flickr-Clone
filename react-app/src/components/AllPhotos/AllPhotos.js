@@ -16,7 +16,7 @@ const AllPhotos = () => {
 
     return (
         <div className="all-photos-page-container">
-            <h1>All Photos</h1>
+            <h1 className="all-photos-page-title">All Photos</h1>
             <div className="all-photos-page-content">
                 <div className="all-photos-page-photo-container">
                     {photos?.length === 0 ? (
