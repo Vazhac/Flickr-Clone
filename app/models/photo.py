@@ -14,8 +14,7 @@ class Photo(db.Model):
         db.DateTime, default=db.func.now(), onupdate=db.func.now())
 
     user = db.relationship('User', back_populates='photos')
-    comments = db.relationship('Comment', back_populates='photo')
-    # delete comments if photo is deleted
+    comments = db.relationship('Comment', back_populates='photo', cascade='all, delete')
 
     def to_dict(self):
         return {

@@ -9,7 +9,13 @@
     background-color: bisque;
 }
 
+.all-photos-page-title {
+    display: flex;
+    justify-content: center;
+}
+
 .all-photos-page-photo {
     width: 275px;
-    height: auto;
+    height: 275px;
+
 }
