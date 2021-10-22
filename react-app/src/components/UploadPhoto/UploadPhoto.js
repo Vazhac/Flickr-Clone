@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 //ask for title and description and url for song
 function UploadForm() {
     const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user);
+    const user = useSelector((state) => state.session.user);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     // const [album, setAlbum] = useState("");
@@ -19,9 +19,9 @@ function UploadForm() {
         e.preventDefault();
         const photo = {
             title,
+            description,
             url,
-            description: "",
-            userId: sessionUser.id
+            userId: user.id
         }
         setErrors([]);
         if (title === "" || url === "") {
@@ -30,7 +30,7 @@ function UploadForm() {
             dispatch(createPhoto(photo))
             dispatch(fetchPhotos());
             setTitle("");
-            // setAlbum("");
+            setDescription("");
             setUrl("");
             return history.push("/photos");
         }

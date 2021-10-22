@@ -1,0 +1,22 @@
+.photo-page-title {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-page-photo {
+    width: 75%;
+    height: auto;
+    margin: auto;
+    display: block;
+}
+
+.photo-page-author,
+.photo-page-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,5 +1,3 @@
-import { csrfFetch } from './csrf';
-
 const CREATE_COMMENT = 'photos/CREATE_COMMENT';
 const SET_COMMENT = 'photos/SET_COMMENT';
 const EDIT_COMMENT = 'photos/EDIT_COMMENT';
@@ -40,32 +38,40 @@ const setComments = comments => ({
 });
 
 export const createComment = (newComment) => async dispatch => {
-  const response = await csrfFetch(
-    `/api/photos/${newComment.songId}/comments`,
-    {
-      method: 'POST',
-      body: JSON.stringify({ newComment }),
-    }
-  );
-  const data = await response.json();
-  dispatch(createCommentAction(data.newComment));
-  dispatch(getComments(data.songId));
+  const response = await fetch(`/api/photos/${newComment.photo_id}/comments/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newComment),
+  });
+  const comment = await response.json();
+  dispatch(createCommentAction(comment));
+};
 
+export const fetchComments = (id) => async dispatch => {
+  const response = await fetch(`/api/photos/${id}/comments/`);
+
+  if (response.ok) {
+    const comments = await response.json();
+    dispatch(setComments(comments));
+  }
 };
 
 // get a specific comment from the state by id and return it as a comment object at API route /api/songs/:id/comments/:id
 export const fetchComment = (id, commentId) => async dispatch => {
-  const response = await csrfFetch(
-    `/api/photos/${id}/comments/${commentId}`
-  );
-  const data = await response.json();
-  dispatch(setComment(data.comment));
+  const response = await fetch(`/api/photos/${id}/comments/${commentId}`);
+
+  if (response.ok) {
+    const comment = await response.json();
+    dispatch(setComment(comment));
+  }
 };
 
 // edit a comment by id and return the new state
 export const editComment = (comment) => async dispatch => {
-  const response = await csrfFetch(
-    `/api/photos/${comment.songId}/comments/${comment.id}`,
+  const response = await fetch(
+    `/api/photos/${comment.songId}/comments/${comment.id}/`,
     {
       method: 'PUT',
       include: 'user',
@@ -78,24 +84,15 @@ export const editComment = (comment) => async dispatch => {
 
 // delete the comment by id and return the new state with the comment removed
 export const deleteComment = (id, commentId) => async dispatch => {
-  const response = await csrfFetch(
-    `/api/photos/${id}/comments/${commentId}`,
+  const response = await fetch(
+    `/api/photos/${id}/comments/${commentId}/`,
     {
       method: 'DELETE',
     }
   );
   const data = await response.json();
   dispatch(removeCommentAction(data.commentId));
-  dispatch(getComments(id));
-};
-
-export const getComments = (id) => async dispatch => {
-  const response = await csrfFetch(`/api/photos/${id}/comments`);
-
-  if (response.ok) {
-    const comments = await response.json();
-    dispatch(setComments(comments));
-  }
+  dispatch(fetchComments(id));
 };
 
 const initialState = {};
@@ -108,7 +105,7 @@ const commentsReducer = (state = initialState, action) => {
       newState.comment = action.payload;
       return newState;
     case SET_COMMENT:
-      newState.comments = action.payload;
+      newState.comment = action.payload;
       break;
     case EDIT_COMMENT:
       newState.comments = state.comments.map(comment => {

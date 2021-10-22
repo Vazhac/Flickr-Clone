@@ -40,16 +40,15 @@ const removePhotoAction = (photoId) => {
 };
 
 export const createPhoto = (photo) => async (dispatch) => {
-  let response = await fetch('/api/photos', {
+  const response = await fetch('/api/photos/', {
     method: 'POST',
-    body: JSON.stringify(photo),
     headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  response = await response.json();
-  dispatch(createPhotoAction(response));
-  return response;
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(photo),
+  });
+  const data = await response.json();
+  dispatch(createPhotoAction(data));
 }
 
 export const fetchPhoto = (id) => async (dispatch) => {
@@ -64,15 +63,25 @@ export const fetchPhoto = (id) => async (dispatch) => {
 export const editPhoto = (photo) => async (dispatch) => {
   const response = await fetch(`/api/photos/${photo.id}`, {
     method: 'PUT',
-    include: 'user',
-    body: JSON.stringify(photo)
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(photo),
   });
-  dispatch(editPhotoAction(photo));
-  return response;
+  const data = await response.json();
+  dispatch(editPhotoAction(data));
 }
 
+// const response = await fetch(`/api/photos/${photo.id}`, {
+//   method: 'PUT',
+//   include: 'user',
+//   body: JSON.stringify(photo)
+// });
+// dispatch(editPhotoAction(photo));
+// return response;
+
 export const fetchPhotos = () => async (dispatch) => {
-  const response = await fetch('/api/photos');
+  const response = await fetch('/api/photos/');
   const photos = await response.json();
   if (response.ok) {
     dispatch(setPhotosAction(photos));
@@ -99,18 +108,13 @@ const photosReducer = (state = initialState, action) => {
       newState.photo = action.payload;
       return newState;
     case SET_PHOTO:
-      newState.photos = action.payload;
+      newState.photo = action.payload;
       return newState;
     case EDIT_PHOTO:
-      newState.photos = newState.photos.map(photo => {
-        if (photo.id === action.payload.id) {
-          return action.payload;
-        }
-        return photo;
-      });
+      newState.photo = action.payload;
       return newState;
     case REMOVE_PHOTO:
-      newState.photos = newState.photos.filter(photo => photo.id !== action.payload);
+      newState.photo = {};
       return newState;
     case SET_PHOTOS:
       newState.photos = action.payload;

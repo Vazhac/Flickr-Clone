@@ -7,17 +7,19 @@ import SignUpForm from './components/auth/SignUpForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import SplashPage from './components/SplashPage/SplashPage';
 import AllPhotos from './components/AllPhotos/AllPhotos';
+import CurrentPhoto from './components/CurrentPhoto/CurrentPhoto';
 import NavBar from './components/NavBar/NavBar';
 import UploadPhoto from './components/UploadPhoto/UploadPhoto';
+import { fetchPhotos } from './store/photos';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-  // const user = useSelector(state => state.session.user);
 
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
+      await dispatch(fetchPhotos());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -30,6 +32,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/' exact={true}>
+          <SplashPage />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -39,11 +44,11 @@ function App() {
         <ProtectedRoute path='/upload' exact={true} >
           <UploadPhoto />
         </ProtectedRoute>
-        <Route path='/' exact={true}>
-          <SplashPage />
-        </Route>
-        <ProtectedRoute path='/photos'>
+        <ProtectedRoute path='/photos' exact={true}>
           <AllPhotos />
+        </ProtectedRoute>
+        <ProtectedRoute path='/photos/:id' exact={true}>
+          <CurrentPhoto />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

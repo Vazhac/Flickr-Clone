@@ -1,0 +1,15 @@
+.all-photos-page-photo-container {
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1000px;
+    gap: 10px;
+    background-color: bisque;
+}
+
+.all-photos-page-photo {
+    width: 275px;
+    height: auto;
+}

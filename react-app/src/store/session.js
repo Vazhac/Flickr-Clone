@@ -24,7 +24,6 @@ const removeUser = () => ({
 /* ----------------------------------------------------------------------- */
 
 export const authenticate = () => async (dispatch) => {
-  console.log('inside authenticate');
   const response = await fetch('/api/auth/', {
     headers: {
       'Content-Type': 'application/json'
