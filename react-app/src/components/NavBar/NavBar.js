@@ -24,7 +24,7 @@ const NavBar = () => {
             (
               <>
                 <div className="user-actions-container">
-                  <NavLink to='/' exact={true} activeClassName='active'>
+                  <NavLink className='sign-up-navbar-link' to='/' exact={true} activeClassName='active'>
                   PHOTOPICKR
                   </NavLink>
                   <div className="user-actions-right">
