@@ -1,0 +1,126 @@
+.top-level {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 64px);
+    width: 100%;
+}
+
+.splash-page-container {
+    display: flex;
+    align-items: center;
+    /* position: absolute; */
+    width: 100%;
+    height: 100%;
+    /* padding: 0 60px; */
+}
+
+.splash-page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.splash-page-background-1 {
+    background-image: url("https://combo.staticflickr.com/ap/build/images/sohp/2020-top-25/Untitled_Jorge_Guadalupe_Lizarraga.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.splash-page-info {
+    margin: 0 auto;
+    max-width: 640px;
+}
+
+.splash-page-title {
+    font-size: 56px;
+    line-height: 56px;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    display: block;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.splash-page-subtitle {
+    margin-bottom: 50px;
+    font-size: 26px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.splash-page-button-container {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.splash-page-center-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.splash-page-center-button {
+    height: 64px;
+    line-height: 64px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #fff;
+    color: #000;
+    min-width: 200px;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0 20px;
+    vertical-align: top;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
+.footer-contact-info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10%;
+    bottom: 0;
+    background-color: black;
+    padding: 16px 0;
+}
+
+.footer-contact-info a  {
+    font-size: 1rem;
+    font-weight: normal;
+    color: grey;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.github-logo {
+    color: white;
+}

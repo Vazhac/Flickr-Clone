@@ -3,7 +3,8 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    height: 64px;
+    background-color: rgba(0,0,0,.25);
 }
 
 .nav-content-container {
@@ -20,6 +21,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    padding: 0 24px;
 }
 
 .user-actions-right {
@@ -30,17 +32,40 @@
     height: 100%;
 }
 
-.user-actions-right > .sign-up-button {
+.user-actions-right-login,
+.user-actions-right-signup {
+    margin-left: 23px;
+}
+
+.sign-up-button {
+    color: #000;
+    background-color: #fff;
+    -webkit-transition: color .15s ease-in-out;
+    transition: color .15s ease-in-out;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0 20px;
+    vertical-align: top;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
     text-decoration: none;
-    color: black;
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: white;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    height: 32px;
+    line-height: 32px;
+    min-width: 80px;
 
 }
-.user-actions-right > .login-button {
+
+.login-button {
+    color: #fff;
     text-decoration: none;
-    color: white;
+    cursor: pointer;
 }
 
 .nav-content-container > .home-button,
