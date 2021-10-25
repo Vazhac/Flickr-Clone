@@ -24,14 +24,20 @@ const NavBar = () => {
             (
               <>
                 <div className="user-actions-container">
-                  <NavLink to='/' exact={true} activeClassName='active'>Home</NavLink>
+                  <NavLink to='/' exact={true} activeClassName='active'>
+                  PHOTOPICKR
+                  </NavLink>
                   <div className="user-actions-right">
-                    <NavLink className="login-button" to='/login' exact={true} activeClassName='active'>
-                      Login
-                    </NavLink>
-                    <button className="sign-up-button" onClick={() => window.location.href = '/sign-up'}>
-                      Sign Up
-                    </button>
+                    <div className="user-actions-right-login">
+                      <NavLink className="login-button" to='/login' exact={true} activeClassName='active'>
+                        Login
+                      </NavLink>
+                    </div>
+                    <div className="user-actions-right-signup">
+                      <button className="sign-up-button" onClick={() => window.location.href = '/sign-up'}>
+                        Sign Up
+                      </button>
+                      </div>
                   </div>
                 </div>
               </>
