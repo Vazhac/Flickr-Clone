@@ -3,32 +3,161 @@
     flex-direction: column;
     height: calc(100vh - 64px);
     width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 16px;
+}
+
+/* show entire image as background */
+.sign-up-page-background-1 {
+    background-image: url("https://identity.flickr.com/img/033120190455-by-Henry.26d9f56a.jpg");
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    height: 100vh;
+
+    position: relative;
+    top: 0;
+    left: 0;
+    color: #212124;
+    line-height: 1.3;
+}
+
+.sign-up-navbar-outer {
+    background-color: #212124;
+    font-size: 16px;
+    height: 3rem;
+    width: 100%;
+    line-height: 1.3rem;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+}
+
+.sign-up-navbar-inner {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.sign-up-navbar-link {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
 }
 
 .sign-up-page-container {
     display: flex;
     align-items: center;
-    /* position: absolute; */
     width: 100%;
-    height: 100%;
-    /* padding: 0 60px; */
+    min-height: calc(100vh - 3rem);
+    justify-content: center;
+    flex-direction: column;
+    /* overflow-y: auto; */
+    /* padding: 2rem; */
+    /* padding-bottom: 4rem; */
+    margin: 0;
 }
 
 .sign-up-form-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     background-color: white;
+    width: 22rem;
+    /* padding: 1.5rem; */
+    /* margin: 0; */
+    position: relative;
+    border-radius: 0.25rem;
+    color: #212124;
+    line-height: 1.3;
 }
 
-.splash-page-background-1 {
-    background-image: url("https://combo.staticflickr.com/ap/build/images/sohp/2020-top-25/Untitled_Jorge_Guadalupe_Lizarraga.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+.sign-up-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    width: 100%;
+    height: 100%;
+    /* padding: 1.5rem; */
+    box-sizing: border-box;
+}
+
+.sign-up-form-first-name-container,
+.sign-up-form-last-name-container,
+.sign-up-form-email-container,
+.sign-up-form-password-container,
+.sign-up-form-confirm-password-container {
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+
+.sign-up-form-first-name,
+.sign-up-form-last-name,
+.sign-up-form-email,
+.sign-up-form-password,
+.sign-up-form-confirm-password {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.sign-up-first-name-input,
+.sign-up-last-name-input,
+.sign-up-email-input,
+.sign-up-password-input,
+.sign-up-confirm-password-input {
+    align-self: start;
+    padding: 1.7rem 1rem 0.45rem 1rem;
+    flex: 1;
+    box-shadow: none;
+    border-radius: 0.25rem;
+    outline: none;
+    cursor: text;
+    color: #212124;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    border-width: 2px;
+    width: 100%;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+
+/* .sign-up-first-name-input:hover,
+.sign-up-last-name-input:hover,
+.sign-up-email-input:hover,
+.sign-up-password-input:hover,
+.sign-up-confirm-password-input:hover {
+    cursor: text;
+} */
+
+
+.sign-up-form-button {
+    background-color: #128fdc;
+    margin-top: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.sign-up-form-button:hover {
+    cursor: pointer;
 }
