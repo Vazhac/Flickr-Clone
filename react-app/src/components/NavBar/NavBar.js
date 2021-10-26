@@ -43,13 +43,15 @@ const NavBar = () => {
               </>
             )
             :
-            <div className='nav-content-container'>
-              <NavLink to='/' className="home-button" exact={true} activeClassName='active'>Home</NavLink>
-              <NavLink to='/photos' className="photos-button" exact={true} activeClassName='active'>Photos</NavLink>
-              <NavLink to='/upload' className="upload-button" exact={true} activeClassName='active'>Upload</NavLink>
-              {/* <SearchBar /> */}
-              {/* <UploadAlbumModal /> */}
-              <LogoutButton />
+            <div className='user-actions-container'>
+              <div className="user-actions-left">
+                <NavLink to='/' className="home-button" exact={true} activeClassName='active'>Home</NavLink>
+                <NavLink to='/photos' className="photos-button" exact={true} activeClassName='active'>Photos</NavLink>
+              </div>
+              <div className="user-actions-right">
+                <NavLink to='/upload' className="upload-button" exact={true} activeClassName='active'>Upload</NavLink>
+                <LogoutButton className="logout-button"/>
+              </div>
             </div>
         }
       </nav>

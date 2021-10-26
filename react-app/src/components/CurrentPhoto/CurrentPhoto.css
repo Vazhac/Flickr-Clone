@@ -1,3 +1,10 @@
+.photo-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .photo-page-title {
     width: 50%;
     height: 50%;
@@ -8,15 +15,37 @@
 }
 
 .photo-page-photo {
-    width: 75%;
+    width: 100%;
     height: auto;
     margin: auto;
     display: block;
 }
 
-.photo-page-author,
-.photo-page-description {
+.photo-page-comments-container {
+    width: 100%;
+    height: auto;
+    margin: auto;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-page-controls {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.photo-page-container-right-edit {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }

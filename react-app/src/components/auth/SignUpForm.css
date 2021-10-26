@@ -18,7 +18,6 @@ html {
     background-position: bottom;
     background-repeat: no-repeat;
     height: 100vh;
-
     position: relative;
     top: 0;
     left: 0;
@@ -79,6 +78,15 @@ html {
     line-height: 1.3;
 }
 
+.sign-up-form-header {
+    display: flex;
+}
+
+.sign-up-form-header-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
 .sign-up-form {
     display: flex;
     flex-direction: column;
@@ -117,12 +125,13 @@ html {
 .sign-up-email-input,
 .sign-up-password-input,
 .sign-up-confirm-password-input {
-    align-self: start;
     padding: 1.7rem 1rem 0.45rem 1rem;
-    flex: 1;
+    /* padding: 1.7rem; */
+    /* flex: 1; */
     box-shadow: none;
     border-radius: 0.25rem;
     outline: none;
+    /* border: none; */
     cursor: text;
     color: #212124;
     letter-spacing: normal;
@@ -135,8 +144,6 @@ html {
     appearance: auto;
     border-width: 2px;
     width: 100%;
-    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-    border-image: initial;
 }
 
 /* .sign-up-first-name-input:hover,
@@ -147,6 +154,10 @@ html {
     cursor: text;
 } */
 
+.sign-up-form-button-outer-container {
+    /* padding-top: 1rem; */
+    padding-bottom: 1rem;
+}
 
 .sign-up-form-button {
     background-color: #128fdc;
@@ -156,8 +167,23 @@ html {
     color: white;
     font-size: 1.25rem;
     font-weight: bold;
+    border: none;
 }
 
 .sign-up-form-button:hover {
+    background-color: #0e71af;
     cursor: pointer;
+}
+
+.already-started-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    color: #212124;
+    line-height: 1.3;
 }
