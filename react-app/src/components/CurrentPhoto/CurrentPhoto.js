@@ -49,30 +49,32 @@ const CurrentPhoto = () => {
         <div className="photo-page">
             <div className="photo-page-header">
                 <div className="photo-page-header-left">
-                    <div className="photo-page-header-left-photo-name">
-                        <h1 className="photo-page-title">{photo?.title}</h1>
+                    <div className="photo-page-container">
                         <img className="photo-page-photo" src={photo?.url} alt="photo" />
+                        <h1 className="photo-page-title">{photo?.title}</h1>
                         <h2 className="photo-page-author">By: {photo?.user?.first_name} {photo?.user?.last_name}</h2>
                         <h3 className="photo-page-description">Description: {photo?.description}</h3>
-                        <div className="photo-page-container">
-                            <div className="photo-page-container-left">
-                                {/* <button onClick={() => history.push("/photos")}>Back to photos</button> */}
-                                {(currentUser?.id === photo?.user?.id) ? (
-                                    <div className="photo-page-container-right-edit">
+                        <div className="photo-page-controls-container">
+                            <div className="photo-page-controls">
+                                <button onClick={() => history.push("/photos")}>Back to photos</button>
+                            {(currentUser?.id === photo?.user?.id) ? (
+                                <div className="photo-page-container-right-edit">
+                                    <div>
                                         <EditPhotoModal photo={photo} />
-                                        <div className="photo-page-container-right-delete">
-                                            <button onClick={handleDelete}>Delete</button>
-                                        </div>
                                     </div>
-                                ) : null}
+                                    <div>
+                                        <button className="photo-page-container-right-delete" onClick={handleDelete}>Delete</button>
+                                    </div>
+                                </div>
+                            ) : null}
                             </div>
-                        </div>
+                            </div>
                         <div className="photo-page-comments-container">
-                            <div className="photo-page-comments-left">
-                                <div className="photo-page-comments-left-header">
+                            <div className="photo-page-comments">
+                                <div className="photo-page-comments-header">
                                     <h1>Comments</h1>
                                 </div>
-                                <div className="photo-page-comments-left-comments">
+                                <div className="photo-page-comment-input">
                                     <form className="enter-comment-form" onSubmit={handleSubmit} >
                                         <textarea
                                             rows="5"
