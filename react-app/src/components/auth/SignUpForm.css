@@ -126,12 +126,10 @@ html {
 .sign-up-password-input,
 .sign-up-confirm-password-input {
     padding: 1.7rem 1rem 0.45rem 1rem;
-    /* padding: 1.7rem; */
-    /* flex: 1; */
+    outline: none;
     box-shadow: none;
     border-radius: 0.25rem;
-    outline: none;
-    /* border: none; */
+    border: 1px solid rgba(0, 0, 0, 0.2);
     cursor: text;
     color: #212124;
     letter-spacing: normal;
@@ -142,17 +140,26 @@ html {
     display: inline-block;
     text-align: start;
     appearance: auto;
-    border-width: 2px;
     width: 100%;
 }
 
-/* .sign-up-first-name-input:hover,
+.sign-up-first-name-input:hover,
 .sign-up-last-name-input:hover,
 .sign-up-email-input:hover,
 .sign-up-password-input:hover,
 .sign-up-confirm-password-input:hover {
     cursor: text;
-} */
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.sign-up-first-name-input:focus,
+.sign-up-last-name-input:focus,
+.sign-up-email-input:focus,
+.sign-up-password-input:focus,
+.sign-up-confirm-password-input:focus {
+    outline: none;
+    border:1px solid #128fdc;
+}
 
 .sign-up-form-button-outer-container {
     /* padding-top: 1rem; */
@@ -186,4 +193,11 @@ html {
     box-sizing: border-box;
     color: #212124;
     line-height: 1.3;
+}
+
+.sign-up-errors {
+    color: red;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-top: 0.5rem;
 }

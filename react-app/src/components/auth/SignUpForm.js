@@ -140,6 +140,11 @@ const SignUpForm = () => {
                   </div>
                 </div>
               </div>
+              <div className="sign-up-errors">
+                {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+                  ))}
+              </div>
               <div className="already-started-container">
                 <span className="already-started-text">Already a PhotoPickr member?</span>
                 <br></br>
@@ -148,11 +153,6 @@ const SignUpForm = () => {
                 </span>
               </div>
             </form>
-            <div className="sign-up-errors">
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-                ))}
-            </div>
           </div>
         </div>
       </div>

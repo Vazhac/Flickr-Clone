@@ -115,6 +115,7 @@ html {
 .log-in-form-email-input:hover,
 .log-in-form-password-input:hover {
     cursor: text;
+    border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .log-in-form-email-input:focus,

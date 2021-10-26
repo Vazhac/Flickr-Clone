@@ -79,6 +79,13 @@ const LoginForm = () => {
                     required={true}
                   />
                 </div>
+                <div className="need-account-container">
+                  <span className="need-account-text">Don't have an account?</span>
+                  <br></br>
+                  <span className="need-account-text">
+                    <a href='/sign-up' className="already-started-link">Sign up here.</a>
+                  </span>
+                </div>
                 <div className="log-in-form-error-container">
                   {errors.length > 0 &&
                     <div className='log-in-form-error'>
