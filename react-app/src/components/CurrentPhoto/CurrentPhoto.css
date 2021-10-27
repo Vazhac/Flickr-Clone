@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(146, 204, 251);
+}
+
 .photo-page-container {
     width: 100%;
     display: flex;
@@ -6,21 +10,34 @@
     align-items: center;
 }
 
+.photo-page-photo {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: block;
+}
+
 .photo-page-info-and-photo-controls {
     width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    /* margin: 0;
-    padding: 0; */
+    margin: 0;
+    padding: 0;
 }
 
-.photo-page-photo {
-    width: 100%;
-    height: auto;
-    margin: auto;
-    display: block;
+.photo-page-title,
+.photo-page-author{
+    /* font-size: 1.5em; */
+    margin: 20px 0;
+    padding: 0;
+}
+
+.photo-page-description {
+    /* font-size: 1.2em; */
+    margin: 20px 0;
+    padding: 0;
 }
 
 .photo-page-controls {
@@ -43,43 +60,92 @@
     align-items: center;
 }
 
-.photo-page-container-right-edit {
+.photo-page-back-button,
+.photo-page-edit-photo-button,
+.photo-page-delete-photo-button,
+.edit-comment-button,
+.delete-comment-button {
+    color: #000;
+    background-color: #fff;
+    -webkit-transition: color .15s ease-in-out;
+    transition: color .15s ease-in-out;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0 20px;
+    vertical-align: top;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    height: 32px;
+    line-height: 32px;
+    min-width: 80px;
+    margin: 0 10px 0 0;
+}
+
+.photo-page-back-button:hover,
+.photo-page-edit-photo-button:hover,
+.photo-page-delete-photo-button:hover,
+.edit-comment-button:hover,
+.delete-comment-button:hover {
+    color: #fff;
+    background-color: #000;
+}
+
+.photo-page-comment-title-and-input-form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-page-comment-title-and-input-form {
+    width: 60%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.photo-page-comments-title-container {
     width: 100%;
     height: auto;
     margin: auto;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.photo-page-comments-container {
-    width: 100%;
-    height: auto;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.photo-page-comments {
-    width: 60%;
-    height: auto;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
 }
 
-.enter-comment-form {
+.photo-page-comments-title {
     width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.photo-page-comment-input-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.photo-page-comment-input {
+    min-width: 273px;
+    max-width: 600px;
     height: auto;
     margin: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .enter-comment-textarea {
@@ -105,7 +171,47 @@
     border:1px solid #128fdc;
 }
 
-.photo-page-body-comment {
+.post-button-outer-container {
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.post-button-inner-container {
+    display:flex;
+}
+
+.post-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 273px;
+    background-color: #52ade9;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 0;
+}
+
+.post-button:hover {
+    background-color: #128fdc;
+}
+
+.photo-page-comments-body-container {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 64px;
+}
+
+.photo-page-comment {
     width: 100%;
     height: auto;
     margin: auto;
@@ -115,18 +221,30 @@
     align-items: center;
 }
 
-.photo-page-comments-title {
+.photo-page-comment-container {
+    background-color: #52ade9;
     width: 100%;
+    /* border-radius: 5px; */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0;
+}
+
+.photo-page-comments-body {
+    width: 60%;
     height: auto;
     margin: auto;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.photo-page-comment-container:hover {
+    background-color: #128fdc;
 }
 
 .photo-page-comment-user-and-body {
-    width: 100%;
+    width: 50%;
     height: auto;
     margin: auto;
     display: flex;
@@ -135,18 +253,7 @@
     /* align-items: center; */
     padding: 0;
     margin: 0;
-}
-
-.photo-page-body-comment-container {
-    background-color: #52ade9;
-    width: 100%;
-    /* border-radius: 5px; */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 0;
-}
-
-.photo-page-body-comment-container:hover {
-    background-color: #c3c3c3;
+    padding: 10px 0px 0px 10px;
 }
 
 .photo-page-comment-user-container {
@@ -168,7 +275,7 @@
     margin: 0;
 }
 
-.photo-page-comment-body-container{
+.photo-page-comment-container{
     width: 100%;
     height: auto;
     margin: auto;
@@ -180,7 +287,7 @@
     margin: 0;
 }
 
-.photo-page-comment-body {
+.photo-page-comment {
     display: flex;
     font-weight: 400;
     padding: 0;
@@ -188,7 +295,7 @@
 }
 
 .date-info-and-comment-controls {
-    width: 100%;
+    width: 50%;
     height: auto;
     display: flex;
     flex-direction: row;
@@ -199,7 +306,7 @@
 }
 
 .date-info-container {
-    width: 50%;
+    width: 100%;
     height: auto;
     margin: auto;
     display: flex;
@@ -211,7 +318,7 @@
 }
 
 .photo-page-comment-controls {
-    width: 50%;
+    width: 100%;
     height: auto;
     display: flex;
     flex-direction: row;

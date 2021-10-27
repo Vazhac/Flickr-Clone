@@ -52,6 +52,7 @@ function UploadForm() {
                         <div className="new-upload-form-title">
                             <label htmlFor="title">Title</label>
                             <input
+                                className="new-upload-form-title-input"
                                 type="text"
                                 name="title"
                                 value={title}
@@ -61,6 +62,7 @@ function UploadForm() {
                         <div className="new-upload-form-description">
                             <label htmlFor="title">Description</label>
                             <input
+                                className="new-upload-form-description-input"
                                 type="text"
                                 name="description"
                                 value={description}
@@ -70,6 +72,7 @@ function UploadForm() {
                         <div className="new-upload-form-url">
                             <label htmlFor="url">URL</label>
                             <input
+                                className="new-upload-form-url-input"
                                 type="text"
                                 name="url"
                                 value={url}

@@ -2,6 +2,7 @@ import React from 'react'
 import './SplashPage.css'
 import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 import Dashboard from '../Dashboard/Dashboard'
+import AllPhotos from '../AllPhotos/AllPhotos'
 import { useSelector } from 'react-redux';
 
 const SplashPage = () => {
@@ -49,7 +50,8 @@ const SplashPage = () => {
         )
     } else {
         return (
-            <Dashboard />
+            // <Dashboard />
+            <AllPhotos />
         )
     }
 }
