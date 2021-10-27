@@ -8,7 +8,7 @@ function EditCommentModal({ comment }) {
 
   return (
     <>
-      <button id="edit-comment-button" onClick={() => setShowModal(true)}>
+      <button className="edit-comment-button" onClick={() => setShowModal(true)}>
         Edit
       </button>
       {showModal && (

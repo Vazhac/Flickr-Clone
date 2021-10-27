@@ -8,7 +8,7 @@ function EditPhotoModal({ photo }) {
 
     return (
         <>
-            <button className="edit-photo-button" onClick={() => setShowModal(true)}>
+            <button className="photo-page-edit-photo-button" onClick={() => setShowModal(true)}>
                 Edit Details
             </button>
             {showModal && (

@@ -63,12 +63,13 @@
     font-weight: bold;
     color: black;
     margin-right: 10px;
+    width: 20%;
 }
 
 .new-upload-form-title > input,
 .new-upload-form-description > input,
 .new-upload-form-url > input {
-    width: 100%;
+    width: 80%;
     height: 40px;
     border: 1px solid #ccc;
     border-radius: 5px;

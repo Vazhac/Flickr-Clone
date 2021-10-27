@@ -39,18 +39,16 @@ function EditComment({comment, setShowModal}) {
 
   return (
     <div className="edit-comment-page">
-      <h1>Edit your comment</h1>
-      <form id="edit-comment-container" onSubmit={handleSubmit}>
-        {errors.length > 0 && (
-          <div className="edit-comment-page-container-errors">
-            {errors.map((error, index) => (
-              <p key={index}>{error}</p>
-            ))}
+      <form className="edit-comment-form-container" onSubmit={handleSubmit}>
+        <div className="edit-comment-container">
+          <div className="edit-comment-label-container">
+            <label className="edit-comment-label">Edit your comment.</label>
           </div>
-        )}
-        <div className="edit-comment-elements">
-          <div className="edit-comment-page-container-input">
-            <input
+          <div className="edit-comment-page-input-container">
+            <textarea
+              className="edit-comment-page-input"
+              rows="5"
+              cols="60"
               type="text"
               name="content"
               placeholder={comment?.content}
@@ -58,10 +56,17 @@ function EditComment({comment, setShowModal}) {
               onChange={(e) => setContent(e.target.value)}
             />
           </div>
-          <div className="edit-comment-page-container-form-submit">
-            <button type="submit">Submit</button>
+          {errors.length > 0 && (
+          <div className="edit-comment-page-container-errors">
+            {errors.map((error, index) => (
+              <p key={index}>{error}</p>
+            ))}
           </div>
+        )}
+          <div className="edit-comment-page-submit-button-container">
+            <button type="submit">Submit</button>
         </div>
+          </div>
       </form>
     </div>
   );
