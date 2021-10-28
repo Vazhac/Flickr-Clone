@@ -2,135 +2,51 @@
 
 Project Wireframe: https://www.figma.com/file/xraSqyGNmKe9IAqlJ5Mm7T/Untitled
 
-This is the starter for the Flask React project.
+## PhotoPickr at a Glance
 
-## Getting started
+PhotoPickr is a full stack Flask and React app that allows users to find photos of a selected tag or album name. Logged in users can comment on other users' photos. Users can also upload photos to their profile pages to demonstrate the types of music they like to make. Currently, JamOut is only seeded with demo users to allow for testing of features.
 
-1. Clone this repository (only this branch)
+## Application Architecture
 
-   ```bash
-   git clone https://github.com/Vazhac/PhotoPickr
-   ```
+PhotoPickr is built on a React frontend with a Flask backend, using PostgreSQL as a database.
 
-2. Install dependencies
+## Frontend Overview
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+PhotoPickr does the vast majority of its application logic on the backend, but display/interaction logic on the frontend is managed using several technologies.
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+### Frontend Technologies Used
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+#### React 
 
-   ```bash
-   pipenv shell
-   ```
+PhotoPickr is a React application. All display logic is handled by the React libraries.
 
-   ```bash
-   flask db upgrade
-   ```
+#### Redux
 
-   ```bash
-   flask seed all
-   ```
+PhotoPickr makes extensive use of Redux. All state management is handled with Redux, with thunks making API calls to the backend server for data. 
 
-   ```bash
-   flask run
-   ```
+## Backend Overview
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+PhotoPickr uses an Express server with a PostgreSQL database, with the PostGIS extension enabled in order to allow for distance queries. 
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+### Backend Technologies Used
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+#### FlaskJS
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+Flask was an easy choice to make for the PhotoPickr server. The simple data flow from the frontend to the backend with JavaScript at the core of the frontend and Python for the backend made for quick, easy development.
 
-## Deploy to Heroku
+#### PostgreSQL
 
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
+PostgreSQL was the database of choice because it is simple to work with, and is easily manipulable using Sequelize.
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+#### Sequelize
 
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
+Sequelize was the ORM of choice for PhotoPickr because of how nicely it integrates with PostgreSQL. All table management and data seeding was handled neatly and simply by way of Sequelize.
 
-   ```bash
-   heroku login
-   ```
+#### React Icons API
 
-6. Login to the heroku container registry
+React Icons was used on the frontend to manage different kinds of messages and to distribute icons to the appropriate error.
 
-   ```bash
-   heroku container:login
-   ```
 
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
+## Conclusion and Next Steps
 
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. Release your docker container to heroku
-
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
-
-10. set up your database
-
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
-
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
-
-12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
+While the core functionality of PhotoPickr works, there are a number of design issues I'm unhappy with. As I have little design experience, I had to make choices that were functional, but not necessarily great, and I would like to take the time to redesign some of the visual aspects of the site so that it is more appealing to look at. Beyond that, I plan to implement the ability for users to edit and delete Albums and Favorites, which they currently cannot do. I also plan to implement a tag system when users search and for photos, as well as follow a tag to see recent photos with that tag. Lastly, I want to implement an Amazon Serverless Image Handler, which will allow users to be able to upload any image instead of providing a URL and be used as a profile picture.
