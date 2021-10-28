@@ -1,8 +1,8 @@
 # PhotoPickr Project
 
-#Project Wireframe: https://www.figma.com/file/xraSqyGNmKe9IAqlJ5Mm7T/Untitled
+Project Wireframe: https://www.figma.com/file/xraSqyGNmKe9IAqlJ5Mm7T/Untitled
 
-#Project Website: https://www.photopickr.herokuapp.com
+Project Website: https://www.photopickr.herokuapp.com
 
 ## PhotoPickr at a Glance
 
