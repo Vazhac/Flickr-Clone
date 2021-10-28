@@ -16,6 +16,7 @@ const CurrentPhoto = () => {
     const photo = useSelector(state => state.photos?.photo)
     const comments = useSelector(state => state.comments?.comments)
     const currentUser = useSelector(state => state.session?.user)
+    const [errors, setErrors] = useState([]);
 
 
     useEffect(() => {
@@ -41,9 +42,9 @@ const CurrentPhoto = () => {
             createdAt: new Date(),
             updatedAt: new Date()
         }
-        // if content is empty, do nothing
+        // if content is empty, return error
         if (content.length === 0) {
-            return
+            setErrors(["Comment can't be empty"])
         } else {
             setContent('')
             dispatch(createComment(newComment))
@@ -84,6 +85,11 @@ const CurrentPhoto = () => {
                         <div className="photo-page-comments-title-container">
                             <h1 className="photo-page-comments-title">Comments</h1>
                         </div>
+                        <div className="comment-errors">
+                            {errors.map((error, ind) => (
+                            <div key={ind}>{error}</div>
+                            ))}
+                        </div>
                         <div className="photo-page-comment-input-container">
                             <form className="photo-page-comment-input" onSubmit={handleSubmit} >
                                 <textarea
@@ -93,7 +99,8 @@ const CurrentPhoto = () => {
                                     placeholder="Write a comment"
                                     name="content"
                                     value={content}
-                                    onChange={(e) => { setContent(e.target.value) }}
+                                    // limit the amount of characters to 255
+                                    onChange={e => setContent(e.target.value.slice(0, 255))}
                                 />
                             </form>
                         </div>

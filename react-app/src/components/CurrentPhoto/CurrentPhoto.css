@@ -163,6 +163,17 @@ body {
     padding: 10px;
 }
 
+.comment-errors {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 10px 0;
+    color: #f3f3f3;
+    background-color: red;
+    border-radius: 5px;
+}
+
 .enter-comment-textarea:hover {
     border: 1px solid rgba(0, 0, 0, 0.5);
 }

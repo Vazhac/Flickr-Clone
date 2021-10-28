@@ -14,9 +14,10 @@ function EditComment({comment, setShowModal}) {
   const [errors, setErrors] = useState([]);
   const history = useHistory();
 
-  // useEffect(() => {
-  //   dispatch(fetchComment(comment));
-  // }, [dispatch, comment]);
+  useEffect(() => {
+    dispatch(fetchComment(comment));
+    setContent(comment.content);
+  }, [dispatch, comment]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,7 +52,7 @@ function EditComment({comment, setShowModal}) {
               cols="60"
               type="text"
               name="content"
-              placeholder={comment?.content}
+              // placeholder={comment?.content}
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />

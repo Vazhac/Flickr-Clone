@@ -27,7 +27,7 @@ const SplashPage = () => {
                     <div className='splash-page'>
                         <div className='splash-page-info'>
                             <h1 className="splash-page-title">Find your inspiration.</h1>
-                            <h2 className="splash-page-subtitle">Join the Flickr community, home to tens of billions of photos and 2 million groups.</h2>
+                            <h2 className="splash-page-subtitle">Join the PhotoPickr community, home to tens of billions of photos and 2 million groups.</h2>
                             <div className="splash-page-center-button-container">
                                 <a href='/sign-up'><button className='splash-page-center-button'>Start for free</button></a>
                             </div>
