@@ -40,9 +40,9 @@ Flask was an easy choice to make for the PhotoPickr server. The simple data flow
 
 PostgreSQL was the database of choice because it is simple to work with, and is easily manipulable using Sequelize.
 
-#### Sequelize
+#### Flask Alchemy
 
-Sequelize was the ORM of choice for PhotoPickr because of how nicely it integrates with PostgreSQL. All table management and data seeding was handled neatly and simply by way of Sequelize.
+Flask Alchemy was the ORM of choice for PhotoPickr because of how nicely it integrates with PostgreSQL and a Python backend. All table management and data seeding was handled neatly and simply by way of Flask Alchemy.
 
 #### React Icons API
 
