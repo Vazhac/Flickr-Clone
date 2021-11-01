@@ -24,6 +24,9 @@ const LoginForm = () => {
   // set the email and password to the demo user
 
   const onDemoLogin = async (e) => {
+    e.preventDefault();
+    setEmail('');
+    setPassword('');
     const demoEmail = 'test@test.com'
     const demoPassword = 'password'
     const data = await dispatch(login(demoEmail, demoPassword));

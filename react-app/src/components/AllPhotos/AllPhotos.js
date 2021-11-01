@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { fetchPhotos } from "../../store/photos"
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 import './AllPhotos.css'
 
 const AllPhotos = () => {
@@ -48,6 +49,17 @@ const AllPhotos = () => {
                         ))}
                     </div>
                 )}
+            </div>
+            <div className="footer-contact-info">
+                <div className="github-repo">
+                    <AiFillGithub className="github-logo"/><a href="https://github.com/Vazhac/PhotoPickr">Github Repo</a>
+                </div>
+                <div className="github-links">
+                    <div className="Link"><AiFillGithub className="github-logo"/><a href="https://github.com/Vazhac">Vazha Chiaberashvili</a></div>
+                </div>
+                <div className="linkedIn-links">
+                    <div className="Link"><AiFillLinkedin className="github-logo"/><a href="https://www.linkedin.com/in/vazha-chiaberashvili/">Vazha Chiaberashvili</a></div>
+                </div>
             </div>
         </div>
     );

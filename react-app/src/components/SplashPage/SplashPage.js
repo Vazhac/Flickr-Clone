@@ -44,7 +44,6 @@ const SplashPage = () => {
                     <div className="linkedIn-links">
                         <div className="Link"><AiFillLinkedin className="github-logo"/><a href="https://www.linkedin.com/in/vazha-chiaberashvili/">Vazha Chiaberashvili</a></div>
                     </div>
-
                 </div>
             </div>
         )

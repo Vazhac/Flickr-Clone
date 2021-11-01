@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { fetchPhotos } from "../../store/photos"
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 // import EditUserModal from '../EditUserModal';
 import './ProfilePage.css';
 
@@ -62,7 +63,7 @@ const ProfilePage = () => {
                         </div>
                         <div className="profile-page-body-container-right">
                             <div className="profile-page-body-container-right-header">
-                                <h2>Your Photos</h2>
+                                <h2>My Photos</h2>
                             </div>
                             <div className="profile-page-body-container-right-body">
                                 {userPhotos.map(photo => {
@@ -77,6 +78,17 @@ const ProfilePage = () => {
                                 })}
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div className="footer-contact-info">
+                    <div className="github-repo">
+                        <AiFillGithub className="github-logo"/><a href="https://github.com/Vazhac/PhotoPickr">Github Repo</a>
+                    </div>
+                    <div className="github-links">
+                        <div className="Link"><AiFillGithub className="github-logo"/><a href="https://github.com/Vazhac">Vazha Chiaberashvili</a></div>
+                    </div>
+                    <div className="linkedIn-links">
+                        <div className="Link"><AiFillLinkedin className="github-logo"/><a href="https://www.linkedin.com/in/vazha-chiaberashvili/">Vazha Chiaberashvili</a></div>
                     </div>
                 </div>
             </div>
