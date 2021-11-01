@@ -131,6 +131,24 @@ html {
     display:flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+}
+
+.log-in-form-error-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1rem;
+    height: 1rem;
+}
+
+.log-in-form-error-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5rem;
 }
 
 .log-in-buttons-container {
