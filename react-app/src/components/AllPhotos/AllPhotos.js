@@ -14,6 +14,11 @@ const AllPhotos = () => {
         dispatch(fetchPhotos());
     }, [dispatch]);
 
+    // scroll to top of page
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="all-photos-page-container">
             <div className="all-photos-page-title-container">

@@ -17,3 +17,13 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def edit_user(id):
+    user = User.query.get(id)
+    user.username = request.json.get('username')
+    user.email = request.json.get('email')
+    user.password = request.json.get('password')
+    db.session.commit()
+    return user.to_dict()

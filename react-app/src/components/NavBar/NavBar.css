@@ -70,6 +70,7 @@
 .home-button,
 .photos-button,
 .upload-button,
+.profile-button,
 .logout-button {
     color: #000;
     background-color: #fff;
@@ -98,15 +99,25 @@
 .home-button:hover,
 .photos-button:hover,
 .upload-button:hover,
+.profile-button:hover,
 .logout-button:hover {
     color: #fff;
     background-color: #000;
 }
 
-.nav-content-container > .logout-button {
+/* .nav-content-container > .logout-button {
     text-decoration: none;
     color: black;
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: white;
+    background-color: #fff;
+} */
+
+.upload-button-icon {
+    color: #fff;
+    font-size: 36px;
+}
+
+.upload-button-icon:hover {
+    color: black;
 }

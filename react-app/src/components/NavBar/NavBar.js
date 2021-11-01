@@ -4,6 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 // import UploadAlbumModal from '../UploadAlbumModal';
 // import SearchBar from '../SearchBar/SearchBar';
+import {MdCloudUpload} from 'react-icons/md';
 import './NavBar.css'
 
 const NavBar = () => {
@@ -49,7 +50,11 @@ const NavBar = () => {
                 <NavLink to='/photos' className="photos-button" exact={true} activeClassName='active'>Photos</NavLink>
               </div>
               <div className="user-actions-right">
-                <NavLink to='/upload' className="upload-button" exact={true} activeClassName='active'>Upload</NavLink>
+                {/* <NavLink to='/upload' className="upload-button" exact={true} activeClassName='active'> */}
+                <NavLink to='/upload' exact={true} activeClassName='active'>
+                  <MdCloudUpload className="upload-button-icon" />
+                </NavLink>
+                <NavLink to='/profile' className="profile-button" exact={true} activeClassName='active'>Profile</NavLink>
                 <LogoutButton className="logout-button"/>
               </div>
             </div>
