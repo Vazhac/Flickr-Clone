@@ -25,8 +25,11 @@ const CurrentPhoto = () => {
     }, [dispatch, photoId])
 
     const handleDelete = () => {
-        dispatch(deletePhoto(photoId))
-        history.push('/photos')
+        // ask for user confirmation before deleting
+        if (window.confirm("Are you sure you want to delete this photo?")) {
+            dispatch(deletePhoto(photoId))
+            history.push('/photos')
+        }
     }
 
     const handleDeleteComment = (commentId) => {
@@ -44,7 +47,10 @@ const CurrentPhoto = () => {
         }
         // if content is empty, return error
         if (content.length === 0) {
-            setErrors(["Comment can't be empty"])
+            setErrors(["Comment can't be blank"])
+            // if content only contains spaces, return error
+        } else if (content.trim().length === 0) {
+            setErrors(["Comment can't be blank"])
         } else {
             setContent('')
             dispatch(createComment(newComment))
@@ -56,7 +62,7 @@ const CurrentPhoto = () => {
     return (
         <div className="photo-page">
                 <div className="photo-page-container">
-                    <img className="photo-page-photo" src={photo?.url} alt="photo" />
+                    <img className="photo-page-photo" src={photo?.url} alt="content" />
                     <div className="photo-page-info-and-photo-controls">
                         <h1 className="photo-page-title">Title: {photo?.title}</h1>
                         <h3 className="photo-page-author">By: {photo?.user?.first_name} {photo?.user?.last_name}</h3>
@@ -99,7 +105,6 @@ const CurrentPhoto = () => {
                                     placeholder="Write a comment"
                                     name="content"
                                     value={content}
-                                    // limit the amount of characters to 255
                                     onChange={e => setContent(e.target.value.slice(0, 255))}
                                 />
                             </form>

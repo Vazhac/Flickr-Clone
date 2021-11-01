@@ -10,6 +10,7 @@ import AllPhotos from './components/AllPhotos/AllPhotos';
 import CurrentPhoto from './components/CurrentPhoto/CurrentPhoto';
 import NavBar from './components/NavBar/NavBar';
 import UploadPhoto from './components/UploadPhoto/UploadPhoto';
+import ProfilePage from './components/ProfilePage/ProfilePage';
 import { fetchPhotos } from './store/photos';
 
 function App() {
@@ -49,6 +50,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/photos/:id' exact={true}>
           <CurrentPhoto />
+        </ProtectedRoute>
+        <ProtectedRoute path='/profile' exact={true}>
+          <ProfilePage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

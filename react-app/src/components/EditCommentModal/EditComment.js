@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './EditComment.css';
 import { editComment, fetchComment } from '../../store/comments'
-import { useParams, useHistory } from "react-router-dom";
+import { useParams} from "react-router-dom";
 
 //ask for title and description and url for comment
 function EditComment({comment, setShowModal}) {
@@ -12,7 +12,6 @@ function EditComment({comment, setShowModal}) {
   const photoId = parseInt(id);
   const [content, setContent] = useState('');
   const [errors, setErrors] = useState([]);
-  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchComment(comment));
@@ -32,6 +31,8 @@ function EditComment({comment, setShowModal}) {
     setErrors([]);
     if (content === "") {
       setErrors(["Please fill out all required fields"]);
+    } else if (content.trim().length === 0) {
+      setErrors(["Comment can't be blank"]);
     } else {
       dispatch(editComment(editedComment))
       setShowModal(false);
@@ -54,7 +55,7 @@ function EditComment({comment, setShowModal}) {
               name="content"
               // placeholder={comment?.content}
               value={content}
-              onChange={(e) => setContent(e.target.value)}
+              onChange={(e) => setContent(e.target.value.slice(0, 255))}
             />
           </div>
           {errors.length > 0 && (

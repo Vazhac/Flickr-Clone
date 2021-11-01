@@ -4,6 +4,7 @@
 
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const EDIT_USER = 'session/EDIT_USER';
 
 /* ----------------------------------------------------------------------- */
 /* ----------------------------Action Creators---------------------------- */
@@ -18,6 +19,10 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
+// const updateUser = (user) => ({
+//   type: EDIT_USER,
+//   payload: user
+// })
 
 /* ----------------------------------------------------------------------- */
 /* --------------------------------Thunks--------------------------------- */
@@ -79,6 +84,24 @@ export const logout = () => async (dispatch) => {
   }
 };
 
+// // edit user
+// export const editUser = (user) => async (dispatch) => {
+//   const { id, first_name, last_name, email, password } = user;
+//   const response = await fetch('/api/auth/edit', {
+//     method: 'PUT',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(user),
+//   });
+//   const data = await response.json();
+//   if (response.ok) {
+//     dispatch(updateUser(data))
+//   } else {
+//     return data.errors;
+//   }
+// }
+
 
 export const signUp = (first_name, last_name, email, password, confirm_password) => async (dispatch) => {
   const response = await fetch('/api/auth/sign-up', {
@@ -127,6 +150,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         user: null
+      };
+    case EDIT_USER:
+      return {
+        ...state,
+        user: action.payload
       };
     default:
       return state;
