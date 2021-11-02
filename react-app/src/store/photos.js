@@ -40,13 +40,22 @@ const removePhotoAction = (photoId) => {
 };
 
 export const createPhoto = (newPhoto) => async (dispatch) => {
+  const { title, description, image, userId } = newPhoto;
+  console.log(newPhoto);
+  const form = new FormData();
+  form.append('title', title);
+  form.append('description', description);
+  form.append('image', image);
+  form.append('userId', userId);
+  console.log(form);
   const response = await fetch('/api/photos/', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newPhoto),
+    body: form,
   });
+  console.log(response);
+  if (!response.ok) {
+    console.log('not ok');
+  }
   const photo = await response.json();
   dispatch(createPhotoAction(photo));
 }
@@ -97,7 +106,7 @@ const photosReducer = (state = initialState, action) => {
   let newState = { ...state };
   switch (action.type) {
     case CREATE_PHOTO:
-      newState.photo = action.payload;
+      newState = { ...state, [action.payload.id]: action.payload };
       return newState;
     case SET_PHOTO:
       newState.photo = action.payload;

@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import Photo, db, Comment
-from flask_login import current_user
+from flask_login import current_user,login_required
+from app.aws_s3 import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 photo_routes = Blueprint('photos', __name__)
 
@@ -21,12 +22,59 @@ def photos():
 
 
 @photo_routes.route('/', methods=['POST'])
+@login_required
 def create_photo():
-    body = request.get_json()
+    print('===========================================================')
+    print('Create Photo API ROUTE 1')
+    print('===========================================================')
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+
+    print('===========================================================')
+    print('Create Photo API ROUTE 2')
+    print('===========================================================')
+
+    image = request.files["image"]
+
+    print('===========================================================')
+    print('Create Photo API ROUTE 3')
+    print('===========================================================')
+
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    print('===========================================================')
+    print('Create Photo API ROUTE 4')
+    print('===========================================================')
+
+    image.filename = get_unique_filename(image.filename)
+
+    print('===========================================================')
+    print('Create Photo API ROUTE 5')
+    print('===========================================================')
+
+    upload = upload_file_to_s3(image)
+
+    print('===========================================================')
+    print('Create Photo API ROUTE 6')
+    print('===========================================================')
+
+    if "url" not in upload:
+    # if the dictionary doesn't have a url key
+    # it means that there was an error when we tried to upload
+    # so we send back that error message
+        return upload, 400
+
+    print('===========================================================')
+    print('Create Photo API ROUTE 7')
+    print('===========================================================')
+
+    url = upload["url"]
+
     photo = Photo(
-        title=body.get('title'),
-        description=body.get('description'),
-        url=body.get('url'),
+        title=request.form.get('title'),
+        description=request.form.get('description'),
+        url=url,
         user_id=current_user.id
     )
     db.session.add(photo)
