@@ -11,7 +11,7 @@ function UploadForm() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     // const [album, setAlbum] = useState("");
-    const [url, setUrl] = useState("");
+    const [image, setImage] = useState(null);
     const [errors, setErrors] = useState([]);
     const history = useHistory();
 
@@ -20,21 +20,26 @@ function UploadForm() {
         const photo = {
             title,
             description,
-            url,
+            image,
             userId: user.id
         }
         setErrors([]);
-        if (title === "" || url === "") {
+        if (title === "" || image === "") {
             setErrors(["Please fill out all required fields"]);
         } else {
             dispatch(createPhoto(photo))
             dispatch(fetchPhotos());
             setTitle("");
             setDescription("");
-            setUrl("");
+            setImage("");
             return history.push("/photos");
         }
     };
+
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+    }
 
     return (
         <div className="upload-form">
@@ -73,10 +78,10 @@ function UploadForm() {
                             <label htmlFor="url">URL</label>
                             <input
                                 className="new-upload-form-url-input"
-                                type="text"
-                                name="url"
-                                value={url}
-                                onChange={(e) => setUrl(e.target.value)}
+                                type="file"
+                                accept="image/*"
+                                onChange={updateImage}
+                                required={true}
                             />
                         </div>
                         <div className="new-upload-form-submit">
