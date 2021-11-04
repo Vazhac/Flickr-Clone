@@ -134,6 +134,8 @@ def photo_comment(id, comment_id):
 @photo_routes.route('/<int:id>/comments/', methods=['POST'])
 def create_comment(id):
     body = request.get_json()
+
+    # if the comment doesn't have an updatedAt key don't include it
     comment = Comment(
         content=body.get('content'),
         user_id=current_user.id,
