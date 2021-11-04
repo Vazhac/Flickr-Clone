@@ -286,6 +286,10 @@ body {
     margin: 0;
 }
 
+.photo-page-comment-body {
+    overflow-wrap: break-word;
+}
+
 .photo-page-comment-container{
     width: 100%;
     height: auto;
