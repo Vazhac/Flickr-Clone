@@ -6,6 +6,7 @@ import { fetchPhoto, deletePhoto } from '../../store/photos'
 import { createComment, fetchComments, deleteComment } from '../../store/comments'
 import EditPhotoModal from '../EditPhotoModal'
 import EditCommentModal from '../EditCommentModal'
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
 const CurrentPhoto = () => {
     const dispatch = useDispatch()
@@ -43,7 +44,7 @@ const CurrentPhoto = () => {
             photo_id: photoId,
             user_id: currentUser.id,
             createdAt: new Date(),
-            updatedAt: new Date()
+            updatedAt: null
         }
         // if content is empty, return error
         if (content.length === 0) {
@@ -134,8 +135,14 @@ const CurrentPhoto = () => {
                                     </div>
                                     <div className="date-info-and-comment-controls">
                                         <div className="date-info-container">
-                                            <h5 classNAme="date-info-createdAt">Posted On: {comment?.createdAt}</h5>
+                                            <h5 classNAme="date-info-createdAt">Create on: {format(new Date(comment?.createdAt), 'MM/dd/yyyy')}</h5>
                                         </div>
+                                        {/* if the comment has been edited then display the updatedAt date */}
+                                        {comment?.updatedAt ? (
+                                        <div className="date-info-container">
+                                            <h5 classNAme="date-info-updatedAt">Updated on: {format(new Date(comment?.updatedAt), 'h:ma MM/dd/yyyy')}</h5>
+                                        </div>
+                                        ) : null}
                                         {(currentUser?.id === comment?.user?.id) ? (
                                                 <div className="photo-page-comment-controls">
                                                     <EditCommentModal comment={comment} />

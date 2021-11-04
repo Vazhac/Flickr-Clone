@@ -10,7 +10,7 @@ class Comment(db.Model):
         'photos.id'), nullable=False)
     content = db.Column(db.String(255), nullable=False)
     createdAt = db.Column(db.DateTime, nullable=False)
-    updatedAt = db.Column(db.DateTime, nullable=False)
+    updatedAt = db.Column(db.DateTime, nullable=True)
 
     # relationship
     user = db.relationship('User', back_populates='comments')
