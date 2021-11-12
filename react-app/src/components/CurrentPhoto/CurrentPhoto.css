@@ -11,10 +11,13 @@ body {
 }
 
 .photo-page-photo {
-    width: 100%;
+    width: 60%;
+    height: 100%;
+    /* min-height: 100%; */
     height: auto;
     margin: auto;
     display: block;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
 }
 
 .photo-page-info-and-photo-controls {
