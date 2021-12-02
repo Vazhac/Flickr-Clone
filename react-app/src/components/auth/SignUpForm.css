@@ -13,7 +13,7 @@ html {
 
 /* show entire image as background */
 .sign-up-page-background-1 {
-    background-image: url("../../../public/images/033120190455-by-Henry.26d9f56a.jpg");
+    background-image: url("/react-app/public/images/033120190455-by-Henry.26d9f56a.jpg");
     background-size: cover;
     background-position: bottom;
     background-repeat: no-repeat;
