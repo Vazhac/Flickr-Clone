@@ -12,7 +12,7 @@ html {
 }
 
 .log-in-page-background-1 {
-    background-image: url("/react-app/public/images/033120190455-by-Henry.26d9f56a.jpg");
+    background-image: url("../Images/033120190455-by-Henry.26d9f56a.jpg");
     background-size: cover;
     background-position: bottom;
     background-repeat: no-repeat;

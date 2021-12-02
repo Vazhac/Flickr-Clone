@@ -24,7 +24,7 @@
 }
 
 .splash-page-background-1 {
-    background-image: url("/react-app/public/images/Untitled_Jorge_Guadalupe_Lizarraga.jpg");
+    background-image: url("../Images/Untitled_Jorge_Guadalupe_Lizarraga.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
