@@ -7,6 +7,7 @@ import SignUpForm from './components/auth/SignUpForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import SplashPage from './components/SplashPage/SplashPage';
 import AllPhotos from './components/AllPhotos/AllPhotos';
+import Favorites from './components/Favorites/Favorites';
 import CurrentPhoto from './components/CurrentPhoto/CurrentPhoto';
 import NavBar from './components/NavBar/NavBar';
 import UploadPhoto from './components/UploadPhoto/UploadPhoto';
@@ -47,6 +48,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/photos' exact={true}>
           <AllPhotos />
+        </ProtectedRoute>
+        <ProtectedRoute path='/favorites' exact={true}>
+          <Favorites />
         </ProtectedRoute>
         <ProtectedRoute path='/photos/:id' exact={true}>
           <CurrentPhoto />

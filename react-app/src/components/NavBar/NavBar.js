@@ -48,6 +48,7 @@ const NavBar = () => {
               <div className="user-actions-left">
                 {/* <NavLink to='/' className="home-button" exact={true} activeClassName='active'>Home</NavLink> */}
                 <NavLink to='/photos' className="photos-button" exact={true} activeClassName='active'>Photos</NavLink>
+                <NavLink to='/favorites' className="favorites-button" exact={true} activeClassName='active'>Favorites</NavLink>
               </div>
               <div className="user-actions-right">
                 {/* <NavLink to='/upload' className="upload-button" exact={true} activeClassName='active'> */}
