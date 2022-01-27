@@ -75,7 +75,7 @@ function UploadForm() {
                             />
                         </div>
                         <div className="new-upload-form-url">
-                            <label htmlFor="url">URL</label>
+                            <label htmlFor="url">Select a file</label>
                             <input
                                 className="new-upload-form-url-input"
                                 type="file"
